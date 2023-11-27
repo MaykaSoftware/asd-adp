@@ -1,5 +1,6 @@
 plugins {
-    kotlin("jvm") version "1.9.0"
+    kotlin("jvm") version "1.9.20"
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.20"
     application
 }
 
@@ -12,6 +13,8 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1")
+    implementation ("com.google.code.gson:gson:2.10.1")
 }
 
 tasks.test {

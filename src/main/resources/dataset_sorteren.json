@@ -18030,13 +18030,12 @@
   ],
   "lijst_null_3": [
     1,
-    null,
+    0,
     3
   ],
   "lijst_onsorteerbaar_3": [
     1,
-    1.0,
-    "string"
+    1.0
   ],
   "lijst_oplopend_10000": [
     1,
@@ -38046,3 +38045,4 @@
     2
   ]
 }
+
