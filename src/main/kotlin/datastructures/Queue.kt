@@ -1,6 +1,6 @@
 package datastructures
 
-class Deque<T> {
+class Queue<T> {
     private val elements: LinkedList<T> = LinkedList()
 
     fun addFirst(element: T) {

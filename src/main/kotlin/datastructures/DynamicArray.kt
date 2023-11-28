@@ -45,16 +45,13 @@ class DynamicArray<T> : Iterable<T>{
             throw IndexOutOfBoundsException("Index: $index, Size: $size")
         }
 
-        // Shift elements to fill the gap
         for (i in index..<size - 1) {
             array[i] = array[i + 1]
         }
 
-        // Set the last element to null and decrease the size
         array[size - 1] = null
         size--
 
-        // Resize the array if it's significantly larger than needed
         if (size > 0 && size == array.size / 3) {
             resizeArray()
         }
