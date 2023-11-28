@@ -7,7 +7,7 @@ import java.lang.reflect.Type
 
 class Node<T>(var data: T, var next: Node<T>? = null)
 
-class LinkedList<T> {
+class LinkedList<T> : Iterable<T>{
     private var head: Node<T>? = null
     private var tail: Node<T>? = null
 
@@ -31,6 +31,18 @@ class LinkedList<T> {
             tail?.next = newNode
             tail = newNode
         }
+    }
+
+    fun addAll(elements: Iterable<T>) {
+        for (element in elements) {
+            addLast(element)
+        }
+    }
+
+    fun <T> listToLinkedList(list: List<T>): LinkedList<T> {
+        val linkedList = LinkedList<T>()
+        linkedList.addAll(list)
+        return linkedList
     }
 
     fun insert(index: Int, element: T) {
@@ -172,5 +184,23 @@ class LinkedList<T> {
             current = current.next
         }
         println("null")
+    }
+
+    override fun iterator(): Iterator<T> {
+        return object : Iterator<T> {
+            private var currentIndex = 0
+
+            override fun hasNext(): Boolean {
+                return currentIndex < size
+            }
+
+            override fun next(): T {
+                if (!hasNext()) {
+                    throw NoSuchElementException()
+                }
+
+                return get(currentIndex++)!!
+            }
+        }
     }
 }

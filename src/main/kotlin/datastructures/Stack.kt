@@ -14,6 +14,10 @@ class StackLinkedList<T> {
         return linkedList.removeLast()
     }
 
+    fun clearAll(){
+        linkedList.clearAll()
+    }
+
     fun peek(): T? {
         if (isEmpty()) {
             return null
@@ -46,6 +50,22 @@ class StackLinkedList<T> {
     fun size(): Int {
         return linkedList.size
     }
+
+    fun addAll(elements: Iterable<T>) {
+        linkedList.addAll(elements)
+    }
+
+    fun toList(): LinkedList<T> {
+        val linkedListCopy = LinkedList<T>()
+        linkedListCopy.addAll(linkedList)
+        return linkedListCopy
+    }
+}
+
+fun <T> linkedListToStack(list: List<T>): StackLinkedList<T> {
+    val stack = StackLinkedList<T>()
+    stack.addAll(list)
+    return stack
 }
 
 class StackDynamicArray<T> {
@@ -53,6 +73,16 @@ class StackDynamicArray<T> {
 
     fun push(element: T) {
         dynamicArray.add(element)
+    }
+
+    fun addAll(elements: Iterable<T>) {
+        dynamicArray.addAll(elements)
+    }
+
+    fun toDynamicArray(): DynamicArray<T> {
+        val dynamicArrayCopy = DynamicArray<T>()
+        dynamicArrayCopy.addAll(dynamicArray)
+        return dynamicArrayCopy
     }
 
     fun pop(): T? {
@@ -64,6 +94,9 @@ class StackDynamicArray<T> {
         return poppedElement
     }
 
+    fun clearAll(){
+        dynamicArray.clearAll()
+    }
     fun peek(): T? {
         if (isEmpty()) {
             return null
@@ -88,5 +121,12 @@ class StackDynamicArray<T> {
     fun size(): Int {
         return dynamicArray.size
     }
+
+}
+
+fun <T> dynamicArrayToStack(list: List<T>): StackDynamicArray<T> {
+    val stack = StackDynamicArray<T>()
+    stack.addAll(list)
+    return stack
 }
 
