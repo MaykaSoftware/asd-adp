@@ -77,12 +77,6 @@ class StackDynamicArray<T> {
         dynamicArray.addAll(elements)
     }
 
-    fun toDynamicArray(): DynamicArray<T> {
-        val dynamicArrayCopy = DynamicArray<T>()
-        dynamicArrayCopy.addAll(dynamicArray)
-        return dynamicArrayCopy
-    }
-
     fun pop(): T? {
         if (isEmpty()) {
             return null

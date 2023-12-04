@@ -2,14 +2,9 @@ package datastructures
 
 class DynamicArray<T> : Iterable<T>{
     private var array: Array<Any?> = arrayOfNulls(10)
-     var size: Int = 0
-
-    fun add(element: T) {
-        if (size == array.size) {
-            resizeArray()
-        }
-        array[size++] = element
-    }
+    var size: Int = 0
+        private set
+        get() = calculateSize()
 
     fun addAll(elements: Iterable<T>) {
         for (element in elements) {
@@ -23,7 +18,14 @@ class DynamicArray<T> : Iterable<T>{
         return dynamicArray
     }
 
-    fun insert(index: Int, element: T) {
+    fun add(element: T) {
+        if (size == array.size) {
+            resizeArray()
+        }
+        array[size++] = element
+    }
+
+    fun set(index: Int, element: T) {
         if (index < 0 || index > size) {
             throw IndexOutOfBoundsException("Index: $index, Size: $size")
         }
@@ -45,16 +47,25 @@ class DynamicArray<T> : Iterable<T>{
             throw IndexOutOfBoundsException("Index: $index, Size: $size")
         }
 
-        for (i in index..<size - 1) {
+        for (i in index until size - 1) {
             array[i] = array[i + 1]
         }
 
         array[size - 1] = null
         size--
 
-        if (size > 0 && size == array.size / 3) {
+        if (size > 0 && size == array.size / 2) {
             resizeArray()
         }
+    }
+
+    fun removeElement(element: T): Boolean {
+        val index = indexOf(element)
+        if (index != -1) {
+            remove(index)
+            return true
+        }
+        return false
     }
 
     fun removeBadPerformance(index: Int) {
@@ -88,11 +99,20 @@ class DynamicArray<T> : Iterable<T>{
 
     fun find(value: T): Int {
         for (i in 0..< size) {
-            if (array[i] === value) {
+            if (array[i] == value) {
                 return i
             }
         }
         return -1
+    }
+
+    fun contains(element: T): Boolean {
+        for (i in 0 until size) {
+            if (array[i] == element) {
+                return true
+            }
+        }
+        return false
     }
 
     private fun resizeArray() {
@@ -103,6 +123,16 @@ class DynamicArray<T> : Iterable<T>{
 
     fun isEmpty(): Boolean {
         return size == 0
+    }
+
+    private fun calculateSize(): Int {
+        var count = 0
+        for (element in array) {
+            if (element != null) {
+                count++
+            }
+        }
+        return count
     }
 
     fun print() {

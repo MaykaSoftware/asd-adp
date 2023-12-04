@@ -6,18 +6,6 @@ class DoublyLinkedList<T> : Iterable<T>{
     private var head: DoublyNode<T>? = null
     private var tail: DoublyNode<T>? = null
 
-    fun push(element: T) {
-        val newNode = DoublyNode(element)
-        if (head == null) {
-            head = newNode
-            tail = newNode
-        } else {
-            newNode.next = head
-            head?.prev = newNode
-            head = newNode
-        }
-    }
-
     fun addAll(elements: Iterable<T>) {
         for (element in elements) {
             push(element)
@@ -28,6 +16,18 @@ class DoublyLinkedList<T> : Iterable<T>{
         val doublyLinkedList = DoublyLinkedList<T>()
         doublyLinkedList.addAll(list)
         return doublyLinkedList
+    }
+
+    fun push(element: T) {
+        val newNode = DoublyNode(element)
+        if (head == null) {
+            head = newNode
+            tail = newNode
+        } else {
+            newNode.next = head
+            head?.prev = newNode
+            head = newNode
+        }
     }
 
     fun append(element: T) {
@@ -42,7 +42,7 @@ class DoublyLinkedList<T> : Iterable<T>{
         }
     }
 
-    fun insert(index: Int, element: T) {
+    fun set(index: Int, element: T) {
         if (index < 0) {
             throw IndexOutOfBoundsException("Index: $index")
         }
@@ -147,6 +147,39 @@ class DoublyLinkedList<T> : Iterable<T>{
         }
     }
 
+    fun removeElement(element: T): Boolean {
+        var current = head
+
+        while (current != null) {
+            if (current.data == element) {
+                removeNode(current)
+                return true
+            }
+            current = current.next
+        }
+
+        return false
+    }
+
+    private fun removeNode(node: DoublyNode<T>) {
+        if (node.prev != null) {
+            node.prev?.next = node.next
+        } else {
+            // Node is the head
+            head = node.next
+        }
+
+        if (node.next != null) {
+            node.next?.prev = node.prev
+        } else {
+            // Node is the tail
+            tail = node.prev
+        }
+
+        size--
+    }
+
+
     fun clearAll() {
         head = null
         tail = null
@@ -167,6 +200,32 @@ class DoublyLinkedList<T> : Iterable<T>{
         }
 
         return current?.data
+    }
+
+    fun find(value: T): Int {
+        var current = head
+        var index = 0
+
+        while (current != null) {
+            if (current.data == value) {
+                return index
+            }
+            current = current.next
+            index++
+        }
+
+        return -1
+    }
+
+    fun contains(element: T): Boolean {
+        var current = head
+        while (current != null) {
+            if (current.data == element) {
+                return true
+            }
+            current = current.next
+        }
+        return false
     }
 
 
