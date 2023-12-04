@@ -2,14 +2,16 @@ package datastructures
 
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import model.Pizza
 import model.Sorteren
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import util.readResourceFile
 import kotlin.system.measureNanoTime
 
-class DynamicArrayTestTest {
+class DynamicArrayTest {
     private val dynamicArray = DynamicArray<Int>()
+    private val pizzaArray = DynamicArray<Pizza>()
 
     val jsonString = readResourceFile("dataset_sorteren.json")
     val deserializedData = Json.decodeFromString<Sorteren>(jsonString)
@@ -30,13 +32,15 @@ class DynamicArrayTestTest {
 
     @BeforeEach
     fun setUp() {
-
-
+        pizzaArray.add(Pizza("Margherita", "Medium"))
+        pizzaArray.add(Pizza("Pepperoni", "Large"))
+        pizzaArray.add(Pizza("Vegetarian", "Small"))
+        pizzaArray.add(Pizza("Hawaiian", "Medium"))
     }
     @Test
     fun insertElementAtFirstIndex() {
         val insertTimeFirst = measureNanoTime {
-            lijst_oplopend_10000.insert(0, 1)
+            lijst_oplopend_10000.set(0, 1)
         }
         println("Time taken to insert element at index 0: $insertTimeFirst ns")
     }
@@ -44,7 +48,7 @@ class DynamicArrayTestTest {
     @Test
     fun insertElementMiddleIndex() {
         val insertTimeMiddle = measureNanoTime {
-            lijst_oplopend_10000.insert(lijst_oplopend_10000.size/2, 5000)
+            lijst_oplopend_10000.set(lijst_oplopend_10000.size/2, 5000)
         }
         println("Time taken to insert insert element at index 500000: $insertTimeMiddle ns")
     }
@@ -58,7 +62,7 @@ class DynamicArrayTestTest {
     }
 
     @Test
-    fun deleteElementFirstIndex() {
+    fun removeFirstIndex() {
         val deleteTimeFirst = measureNanoTime {
             lijst_oplopend_10000.remove(0)
         }
@@ -66,7 +70,53 @@ class DynamicArrayTestTest {
     }
 
     @Test
-    fun deleteElementLastIndex() {
+    fun deleteElement() {
+        // Define the pizza to remove
+        val pizzaToRemove = Pizza("Vegetarian", "Small")
+
+        // Measure the time taken to remove the element
+        val deleteElementTime = measureNanoTime {
+            pizzaArray.removeElement(pizzaToRemove)
+        }
+
+        println("Time taken to delete element: $deleteElementTime ns")
+
+        // Assert or print the array to verify the removal
+
+        pizzaArray.print()
+    }
+
+    @Test
+    fun comparePizza(){
+        // Check if a specific Pizza object is in the DynamicArray
+        val pizzaToCheck = Pizza("Vegetarian", "Small")
+        val containsPizza = pizzaArray.contains(pizzaToCheck)
+
+        if (containsPizza) {
+            println("$pizzaToCheck is in the DynamicArray.")
+            pizzaArray.print()
+        } else {
+            println("$pizzaToCheck is not in the DynamicArray.")
+           pizzaArray.print()
+        }
+    }
+
+    @Test
+    fun findPizza(){
+        val pizzaToFind = Pizza("Vegetarian", "Small")
+        val indexInDynamicArray = pizzaArray.find(pizzaToFind)
+
+        if (indexInDynamicArray != -1) {
+            pizzaArray.print()
+            println("$pizzaToFind found in DynamicArray at index $indexInDynamicArray")
+        } else {
+            pizzaArray.print()
+            println("$pizzaToFind not found in DynamicArray")
+        }
+    }
+
+    @Test
+    fun deleteLastIndex() {
         val deleteTimeLast = measureNanoTime {
             lijst_oplopend_10000.remove(lijst_oplopend_10000.size-1)
         }
