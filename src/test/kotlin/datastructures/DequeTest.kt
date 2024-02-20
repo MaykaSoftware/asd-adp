@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import util.readResourceFile
 import kotlin.system.measureNanoTime
-import kotlin.system.measureTimeMillis
 
 class DequeTest {
 
@@ -37,7 +36,7 @@ class DequeTest {
     fun testAddFirstPerformance() {
 
         val timeInNanos = measureNanoTime {
-                lijstOplopend10000.addFirst(0)
+            lijstOplopend10000.addFirst(0)
         }
 
         println("Time taken to addFirst  $timeInNanos ns")

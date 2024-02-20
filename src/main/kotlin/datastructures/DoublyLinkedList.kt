@@ -2,7 +2,7 @@ package datastructures
 
 class DoublyNode<T>(var data: T, var prev: DoublyNode<T>? = null, var next: DoublyNode<T>? = null)
 
-class DoublyLinkedList<T> : Iterable<T>{
+class DoublyLinkedList<T> : Iterable<T> {
     private var head: DoublyNode<T>? = null
     private var tail: DoublyNode<T>? = null
 
@@ -237,7 +237,6 @@ class DoublyLinkedList<T> : Iterable<T>{
 
     var size: Int = 0
         private set
-
         get() {
             var count = 0
             var current = head

@@ -14,7 +14,7 @@ class StackLinkedList<T> {
         return linkedList.removeLast()
     }
 
-    fun clearAll(){
+    fun clearAll() {
         linkedList.clearAll()
     }
 
@@ -86,9 +86,10 @@ class StackDynamicArray<T> {
         return poppedElement
     }
 
-    fun clearAll(){
+    fun clearAll() {
         dynamicArray.clearAll()
     }
+
     fun peek(): T? {
         if (isEmpty()) {
             return null

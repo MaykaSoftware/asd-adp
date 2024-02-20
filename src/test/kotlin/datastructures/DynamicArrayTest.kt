@@ -23,7 +23,7 @@ class DynamicArrayTest {
     var lijst_onsorteerbaar_3 = dynamicArray.listToDynamicArray(deserializedData.lijstOnsorteerbaar3)
     var lijst_float_8001 = dynamicArray.listToDynamicArray(deserializedData.lijstFloat8001)
     var lijst_leeg_0 = dynamicArray.listToDynamicArray(deserializedData.lijstLeeg0)
-    var lijst_null_1 =dynamicArray.listToDynamicArray(deserializedData.lijstNull1)
+    var lijst_null_1 = dynamicArray.listToDynamicArray(deserializedData.lijstNull1)
     var lijst_null_3 = dynamicArray.listToDynamicArray(deserializedData.lijstNull3)
     var lijst_oplopend_10000 = dynamicArray.listToDynamicArray(deserializedData.lijstOplopend10000)
     var lijst_willekeurig_10000 = dynamicArray.listToDynamicArray(deserializedData.lijstWillekeurig10000)
@@ -37,6 +37,7 @@ class DynamicArrayTest {
         pizzaArray.add(Pizza("Vegetarian", "Small"))
         pizzaArray.add(Pizza("Hawaiian", "Medium"))
     }
+
     @Test
     fun insertElementAtFirstIndex() {
         val insertTimeFirst = measureNanoTime {
@@ -48,9 +49,9 @@ class DynamicArrayTest {
     @Test
     fun insertElementMiddleIndex() {
         val insertTimeMiddle = measureNanoTime {
-            lijst_oplopend_10000.set(lijst_oplopend_10000.size/2, 5000)
+            lijst_oplopend_10000.set(lijst_oplopend_10000.size / 2, 5000)
         }
-        println("Time taken to insert insert element at index 500000: $insertTimeMiddle ns")
+        println("Time taken to insert insert element at index 5000: $insertTimeMiddle ns")
     }
 
     @Test
@@ -66,7 +67,7 @@ class DynamicArrayTest {
         val deleteTimeFirst = measureNanoTime {
             lijst_oplopend_10000.remove(0)
         }
-        println("Time taken to insert to delete element at index 0: $deleteTimeFirst ns")
+        println("Time taken to delete element at index 0: $deleteTimeFirst ns")
     }
 
     @Test
@@ -87,7 +88,7 @@ class DynamicArrayTest {
     }
 
     @Test
-    fun comparePizza(){
+    fun comparePizza() {
         // Check if a specific Pizza object is in the DynamicArray
         val pizzaToCheck = Pizza("Vegetarian", "Small")
         val containsPizza = pizzaArray.contains(pizzaToCheck)
@@ -97,12 +98,12 @@ class DynamicArrayTest {
             pizzaArray.print()
         } else {
             println("$pizzaToCheck is not in the DynamicArray.")
-           pizzaArray.print()
+            pizzaArray.print()
         }
     }
 
     @Test
-    fun findPizza(){
+    fun findPizza() {
         val pizzaToFind = Pizza("Vegetarian", "Small")
         val indexInDynamicArray = pizzaArray.find(pizzaToFind)
 
@@ -118,7 +119,7 @@ class DynamicArrayTest {
     @Test
     fun deleteLastIndex() {
         val deleteTimeLast = measureNanoTime {
-            lijst_oplopend_10000.remove(lijst_oplopend_10000.size-1)
+            lijst_oplopend_10000.remove(lijst_oplopend_10000.size - 1)
         }
         println("Time taken to insert  to delete element at index 5000: $deleteTimeLast ns")
     }
@@ -134,7 +135,7 @@ class DynamicArrayTest {
     @Test
     fun getMiddleElement() {
         val accessTimeMiddle = measureNanoTime {
-            lijst_oplopend_10000[lijst_oplopend_10000.size/2]
+            lijst_oplopend_10000[lijst_oplopend_10000.size / 2]
         }
         println("Time taken to get middle element $accessTimeMiddle ns")
     }
@@ -142,7 +143,7 @@ class DynamicArrayTest {
     @Test
     fun getLastElement() {
         val accessTimeLast = measureNanoTime {
-            lijst_oplopend_10000[lijst_oplopend_10000.size-1]
+            lijst_oplopend_10000[lijst_oplopend_10000.size - 1]
         }
         println("Time taken to get Last element $accessTimeLast ns")
     }

@@ -1,13 +1,8 @@
 package datastructures
 
-import com.google.gson.JsonDeserializationContext
-import com.google.gson.JsonDeserializer
-import com.google.gson.JsonElement
-import java.lang.reflect.Type
-
 class Node<T>(var data: T, var next: Node<T>? = null)
 
-class LinkedList<T> : Iterable<T>{
+class LinkedList<T> : Iterable<T> {
     private var head: Node<T>? = null
     private var tail: Node<T>? = null
 
@@ -20,6 +15,7 @@ class LinkedList<T> : Iterable<T>{
             newNode.next = head
             head = newNode
         }
+        size++
     }
 
     fun addLast(element: T) {
@@ -69,6 +65,32 @@ class LinkedList<T> : Iterable<T>{
 
             newNode.next = current.next
             current.next = newNode
+        }
+    }
+
+    fun removeByValue(value: T) {
+        var current = head
+        var prev: Node<T>? = null
+
+        while (current != null) {
+            if (current.data == value) {
+                if (prev == null) {
+                    // Removing the first element
+                    head = current.next
+                } else {
+                    // Removing an element in the middle or at the end
+                    prev.next = current.next
+                    if (current.next == null) {
+                        // Update tail if the last element is removed
+                        tail = prev
+                    }
+                }
+                size--
+                return
+            }
+
+            prev = current
+            current = current.next
         }
     }
 
@@ -163,7 +185,6 @@ class LinkedList<T> : Iterable<T>{
 
     var size: Int = 0
         private set
-
         get() {
             var count = 0
             var current = head
@@ -173,8 +194,13 @@ class LinkedList<T> : Iterable<T>{
             }
             return count
         }
+
     fun isEmpty(): Boolean {
         return head == null
+    }
+
+    fun isNotEmpty(): Boolean {
+        return head != null
     }
 
     fun printList() {

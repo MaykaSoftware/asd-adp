@@ -2,7 +2,6 @@ package model
 
 data class Pizza(val name: String, val size: String) : Comparable<Pizza> {
     override fun compareTo(other: Pizza): Int {
-        // Compare based on pizza name
         return this.name.compareTo(other.name)
     }
 

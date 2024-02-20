@@ -1,6 +1,6 @@
 package datastructures
 
-class Deque<T>: Iterable<T> {
+class Deque<T> : Iterable<T> {
     private val doublyLinkedList: DoublyLinkedList<T> = DoublyLinkedList()
 
     fun addFirst(element: T) {

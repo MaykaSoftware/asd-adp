@@ -1,6 +1,6 @@
 package datastructures
 
-class DynamicArray<T> : Iterable<T>{
+class DynamicArray<T> : Iterable<T> {
     private var array: Array<Any?> = arrayOfNulls(10)
     var size: Int = 0
         private set
@@ -25,7 +25,7 @@ class DynamicArray<T> : Iterable<T>{
         array[size++] = element
     }
 
-    fun set(index: Int, element: T) {
+    operator fun set(index: Int, element: T) {
         if (index < 0 || index > size) {
             throw IndexOutOfBoundsException("Index: $index, Size: $size")
         }
@@ -58,6 +58,28 @@ class DynamicArray<T> : Iterable<T>{
             resizeArray()
         }
     }
+
+    fun removeAt(index: Int): T? {
+        if (index < 0 || index >= size) {
+            throw IndexOutOfBoundsException("Index: $index, Size: $size")
+        }
+
+        val removedElement = array[index]
+
+        for (i in index until size - 1) {
+            array[i] = array[i + 1]
+        }
+
+        array[size - 1] = null
+        size--
+
+        if (size > 0 && size == array.size / 2) {
+            resizeArray()
+        }
+
+        return removedElement as? T
+    }
+
 
     fun removeElement(element: T): Boolean {
         val index = indexOf(element)
@@ -98,7 +120,7 @@ class DynamicArray<T> : Iterable<T>{
     }
 
     fun find(value: T): Int {
-        for (i in 0..< size) {
+        for (i in 0..<size) {
             if (array[i] == value) {
                 return i
             }
@@ -125,6 +147,16 @@ class DynamicArray<T> : Iterable<T>{
         return size == 0
     }
 
+    fun swap(index1: Int, index2: Int) {
+        if (index1 < 0 || index1 >= size || index2 < 0 || index2 >= size) {
+            throw IndexOutOfBoundsException("Invalid indices: $index1, $index2, Size: $size")
+        }
+
+        val temp = array[index1]
+        array[index1] = array[index2]
+        array[index2] = temp
+    }
+
     private fun calculateSize(): Int {
         var count = 0
         for (element in array) {
@@ -137,7 +169,7 @@ class DynamicArray<T> : Iterable<T>{
 
     fun print() {
         print("[")
-        for (i in 0..< size) {
+        for (i in 0..<size) {
             print(array[i])
             if (i < size - 1) {
                 print(", ")

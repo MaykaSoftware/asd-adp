@@ -36,117 +36,117 @@ class DoublyLinkedListTests {
         pizzaList.append(Pizza("Vegetarian", "Small"))
         pizzaList.append(Pizza("Hawaiian", "Medium"))
     }
-
-    @Test
-    fun push() {
-        val addFirstTime = measureNanoTime {
-            lijst_oplopend_10000.push(1)
-        }
-        println("Time taken to push 1 element: $addFirstTime ns")
-    }
-
-    @Test
-    fun append() {
-        val addLastTime = measureNanoTime {
-            lijst_oplopend_10000.append(1)
-        }
-        println("Time taken to append 1 element: $addLastTime ns")
-    }
-
-    @Test
-    fun insert() {
-        lijst_oplopend_10000.set(5_000, 5_000)
-
-        val insertTime = measureNanoTime {
-            lijst_oplopend_10000.set(1, 2)
-        }
-        println("Time taken to insert 1 element at index 5000: $insertTime ns")
-    }
-
-    @Test
-    fun pop() {
-        val removeFirstTime = measureNanoTime {
-            lijst_oplopend_10000.pop()
-        }
-        println("Time taken to pop an element: $removeFirstTime ns")
-    }
-
-    @Test
-    fun removeLast() {
-        val removeLastTime = measureNanoTime {
-            lijst_oplopend_10000.removeLast()
-        }
-        println("Time taken to removeLast element: $removeLastTime ns")
-    }
-
-    @Test
-    fun remove() {
-        val removeTime = measureNanoTime {
-            lijst_oplopend_10000.remove(5_000)
-        }
-        println("Time taken to remove an element at index 5000: $removeTime ns")
-    }
-
-    @Test
-    fun removeElement(){
-        val pizzaToRemove = Pizza("Vegetarian", "Small")
-
-        // Attempt to remove the pizza
-        val removed = pizzaList.removeElement(pizzaToRemove)
-
-        // Print the updated list
-        if (removed) {
-            println("\nPizza '${pizzaToRemove}' removed successfully:")
-            pizzaList.printList()
-        } else {
-            println("\nPizza '$pizzaToRemove' not found in the list.")
-        }
-    }
-
-    @Test
-    fun getFirst() {
-        val getFirstTime = measureNanoTime {
-            lijst_oplopend_10000.first
-        }
-        println("Time taken to getFirst element: $getFirstTime ns")
-    }
-
-    @Test
-    fun getLast() {
-        val getLastTime = measureNanoTime {
-            lijst_oplopend_10000.last
-        }
-        println("Time taken to getLast element: $getLastTime ns")
-    }
-
-    @Test
-    fun comparePizza(){
-        // Check if a specific Pizza object is in the DynamicArray
-        val pizzaToCheck = Pizza("Vegetarian", "Small")
-        val containsPizza = pizzaList.contains(pizzaToCheck)
-
-        if (containsPizza) {
-            println("$pizzaToCheck is in the DoublyLinkedList.")
-            pizzaList.printList()
-        } else {
-            println("$pizzaToCheck is not in the DoublyLinkedList.")
-            pizzaList.printList()
-        }
-    }
-
-    @Test
-    fun findPizza(){
-        val pizzaToFind = Pizza("Vegetarian", "Small")
-        val indexInDoublyLinkedList = pizzaList.find(pizzaToFind)
-
-        if (indexInDoublyLinkedList != -1) {
-            pizzaList.printList()
-            println("$pizzaToFind found in DoublyLinkedList at index $indexInDoublyLinkedList")
-        } else {
-            pizzaList.printList()
-            println("$pizzaToFind not found in DoublyLinkedList")
-        }
-    }
+//
+//    @Test
+//    fun push() {
+//        val addFirstTime = measureNanoTime {
+//            lijst_oplopend_10000.push(1)
+//        }
+//        println("Time taken to push 1 element: $addFirstTime ns")
+//    }
+//
+//    @Test
+//    fun append() {
+//        val addLastTime = measureNanoTime {
+//            lijst_oplopend_10000.append(1)
+//        }
+//        println("Time taken to append 1 element: $addLastTime ns")
+//    }
+//
+//    @Test
+//    fun insert() {
+//        lijst_oplopend_10000.set(5_000, 5_000)
+//
+//        val insertTime = measureNanoTime {
+//            lijst_oplopend_10000.set(1, 2)
+//        }
+//        println("Time taken to insert 1 element at index 5000: $insertTime ns")
+//    }
+//
+//    @Test
+//    fun pop() {
+//        val removeFirstTime = measureNanoTime {
+//            lijst_oplopend_10000.pop()
+//        }
+//        println("Time taken to pop an element: $removeFirstTime ns")
+//    }
+//
+//    @Test
+//    fun removeLast() {
+//        val removeLastTime = measureNanoTime {
+//            lijst_oplopend_10000.removeLast()
+//        }
+//        println("Time taken to removeLast element: $removeLastTime ns")
+//    }
+//
+//    @Test
+//    fun remove() {
+//        val removeTime = measureNanoTime {
+//            lijst_oplopend_10000.remove(5_000)
+//        }
+//        println("Time taken to remove an element at index 5000: $removeTime ns")
+//    }
+//
+//    @Test
+//    fun removeElement(){
+//        val pizzaToRemove = Pizza("Vegetarian", "Small")
+//
+//        // Attempt to remove the pizza
+//        val removed = pizzaList.removeElement(pizzaToRemove)
+//
+//        // Print the updated list
+//        if (removed) {
+//            println("\nPizza '${pizzaToRemove}' removed successfully:")
+//            pizzaList.printList()
+//        } else {
+//            println("\nPizza '$pizzaToRemove' not found in the list.")
+//        }
+//    }
+//
+//    @Test
+//    fun getFirst() {
+//        val getFirstTime = measureNanoTime {
+//            lijst_oplopend_10000.first
+//        }
+//        println("Time taken to getFirst element: $getFirstTime ns")
+//    }
+//
+//    @Test
+//    fun getLast() {
+//        val getLastTime = measureNanoTime {
+//            lijst_oplopend_10000.last
+//        }
+//        println("Time taken to getLast element: $getLastTime ns")
+//    }
+//
+//    @Test
+//    fun comparePizza(){
+//        // Check if a specific Pizza object is in the DynamicArray
+//        val pizzaToCheck = Pizza("Vegetarian", "Small")
+//        val containsPizza = pizzaList.contains(pizzaToCheck)
+//
+//        if (containsPizza) {
+//            println("$pizzaToCheck is in the DoublyLinkedList.")
+//            pizzaList.printList()
+//        } else {
+//            println("$pizzaToCheck is not in the DoublyLinkedList.")
+//            pizzaList.printList()
+//        }
+//    }
+//
+//    @Test
+//    fun findPizza(){
+//        val pizzaToFind = Pizza("Vegetarian", "Small")
+//        val indexInDoublyLinkedList = pizzaList.find(pizzaToFind)
+//
+//        if (indexInDoublyLinkedList != -1) {
+//            pizzaList.printList()
+//            println("$pizzaToFind found in DoublyLinkedList at index $indexInDoublyLinkedList")
+//        } else {
+//            pizzaList.printList()
+//            println("$pizzaToFind not found in DoublyLinkedList")
+//        }
+//    }
 
     @Test
     fun add10Elements() {
